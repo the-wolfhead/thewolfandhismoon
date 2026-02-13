@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To Jovi 💌</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      height: 100vh;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, #ff9aa2 0%, #ffb7b2 50%, #ffdac1 100%);
+      color: #2d1b24;
+      overflow: hidden;
+      cursor: default;
+    }
+    .container {
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      font-size: clamp(3.2rem, 9vw, 6.5rem);
+      font-weight: 800;
+      color: #fff;
+      text-shadow: 0 8px 25px rgba(0,0,0,0.25);
+      margin-bottom: 0.2em;
+      letter-spacing: -2px;
+      line-height: 0.92;
+    }
+    .subtitle {
+      font-size: clamp(1.5rem, 5vw, 2.6rem);
+      color: #fff9;
+      margin: 0.4em 0 2.5rem;
+      font-weight: 400;
+    }
+    .hearts {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .heart {
+      position: absolute;
+      font-size: 1.8rem;
+      animation: float 12s infinite linear;
+      opacity: 0.7;
+      user-select: none;
+    }
+    @keyframes float {
+      0%   { transform: translateY(110vh) rotate(0deg); }
+      100% { transform: translateY(-15vh) rotate(720deg); }
+    }
+    .btn-group {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2.5rem;
+    }
+    button {
+      font-size: 1.5rem;
+      font-weight: bold;
+      padding: 1.1rem 2.8rem;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    }
+    #yes {
+      background: #ff4d6d;
+      color: white;
+    }
+    #yes:hover {
+      background: #ff3366;
+      transform: scale(1.12) translateY(-4px);
+      box-shadow: 0 14px 40px rgba(255,77,109,0.5);
+    }
+    #no {
+      background: #fff;
+      color: #ff4d6d;
+    }
+    #no:hover {
+      background: #ffebee;
+      transform: translateY(-2px);
+    }
+    .msg {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      margin-top: 3rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1.2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .msg.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (max-height: 620px) {
+      h1 { font-size: 4.8rem; }
+      .subtitle { font-size: 1.8rem; margin: 0.6em 0 1.8em; }
+      .btn-group { gap: 1.5rem; }
+      button { font-size: 1.3rem; padding: 0.9rem 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<div class="container">
+  <h1>Jovi…</h1>
+  <div class="subtitle">will you be my Valentine? 💕</div>
+
+  <div class="btn-group">
+    <button id="yes">Yes!! 🥰</button>
+    <button id="no">No 😭</button>
+  </div>
+
+  <div class="msg" id="happy-msg">Yayyyy!!! I love you so much Jovi 💗💗💗</div>
+  <div class="msg" id="sad-msg" style="color: #ffebee;">…please reconsider? 🥺</div>
+</div>
+
+<script>
+  // Floating hearts
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = ["❤️","💗","💖","💘","💞"][Math.floor(Math.random()*5)];
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (8 + Math.random() * 10) + "s";
+    heart.style.fontSize = (1.1 + Math.random() * 1.8) + "rem";
+    heart.style.animationDelay = Math.random() * 3 + "s";
+    document.getElementById("hearts").appendChild(heart);
+    setTimeout(() => heart.remove(), 15000);
+  }
+
+  setInterval(createHeart, 380);
+
+  // Button logic
+  const yesBtn   = document.getElementById("yes");
+  const noBtn    = document.getElementById("no");
+  const happyMsg = document.getElementById("happy-msg");
+  const sadMsg   = document.getElementById("sad-msg");
+
+  yesBtn.addEventListener("click", () => {
+    happyMsg.classList.add("show");
+    sadMsg.classList.remove("show");
+    noBtn.style.display = "none";
+    yesBtn.style.transform = "scale(1.3)";
+    yesBtn.disabled = true;
+    // Optional: redirect or play song after a few seconds
+    // setTimeout(() => { window.location = "https://youtu.be/dQw4w9WgXcQ"; }, 4200);
+  });
+
+  let noClicks = 0;
+  noBtn.addEventListener("click", () => {
+    noClicks++;
+    if (noClicks <= 3) {
+      sadMsg.textContent = ["🥺 please?","but I made this just for you…","Jovi noooo 😭","one more chance? 🥹"][noClicks-1];
+    } else {
+      sadMsg.textContent = "okay… I'll wait forever if I have to 💔";
+    }
+    sadMsg.classList.add("show");
+    
+    // tiny playful movement
+    noBtn.style.transform = `translate(${Math.random()*60-30}px, ${Math.random()*40-20}px)`;
+  });
+</script>
+
+</body>
+</html>
