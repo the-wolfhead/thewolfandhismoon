@@ -145,7 +145,8 @@ button:active {
 <div class="hearts" id="hearts"></div>
 
 <div class="container">
-  <h1>Jovi…</h1>
+  <h1 id="typewriter"></h1>
+
   <div class="subtitle">
     One year ago you became my everything.<br>
     Last month you said yes to forever and made me the luckiest man alive.<br><br>
@@ -209,6 +210,32 @@ button:active {
     // playful tiny shake
     noBtn.style.transform = `translate(${Math.random()*80-40}px, ${Math.random()*50-25}px)`;
   });
+
+  // Typewriter animation
+const text = "Moon of my soul…";
+const speed = 70;
+
+let i = 0;
+function typeWriter() {
+  if (i < text.length) {
+    document.getElementById("typewriter").textContent += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+
+typeWriter();
+  #typewriter::after {
+  content: "|";
+  margin-left: 6px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+
 </script>
 
 </body>
