@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>To Jovi 💌</title>
+  <title>To My Jovi 💍💕</title>
   <style>
     * {
       margin: 0;
@@ -29,19 +29,22 @@
       text-align: center;
     }
     h1 {
-      font-size: clamp(3.2rem, 9vw, 6.5rem);
+      font-size: clamp(3.5rem, 10vw, 7rem);
       font-weight: 800;
       color: #fff;
-      text-shadow: 0 8px 25px rgba(0,0,0,0.25);
-      margin-bottom: 0.2em;
-      letter-spacing: -2px;
-      line-height: 0.92;
+      text-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      margin-bottom: 0.15em;
+      letter-spacing: -1.5px;
+      line-height: 0.9;
     }
     .subtitle {
-      font-size: clamp(1.5rem, 5vw, 2.6rem);
-      color: #fff9;
-      margin: 0.4em 0 2.5rem;
+      font-size: clamp(1.4rem, 4.5vw, 2.3rem);
+      color: #fffef9;
+      max-width: 90%;
+      line-height: 1.45;
+      margin: 0.7em 0 2.8rem;
       font-weight: 400;
+      opacity: 0.98;
     }
     .hearts {
       position: absolute;
@@ -51,68 +54,67 @@
     }
     .heart {
       position: absolute;
-      font-size: 1.8rem;
-      animation: float 12s infinite linear;
-      opacity: 0.7;
+      font-size: 1.9rem;
+      animation: float 13s infinite linear;
+      opacity: 0.75;
       user-select: none;
     }
     @keyframes float {
       0%   { transform: translateY(110vh) rotate(0deg); }
-      100% { transform: translateY(-15vh) rotate(720deg); }
+      100% { transform: translateY(-20vh) rotate(900deg); }
     }
     .btn-group {
       display: flex;
-      gap: 2.5rem;
+      gap: 2.8rem;
       flex-wrap: wrap;
       justify-content: center;
-      margin-top: 2.5rem;
+      margin-top: 2rem;
     }
     button {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: bold;
-      padding: 1.1rem 2.8rem;
+      padding: 1.2rem 3rem;
       border: none;
       border-radius: 999px;
       cursor: pointer;
-      transition: all 0.25s ease;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.22);
     }
     #yes {
-      background: #ff4d6d;
+      background: #ff3366;
       color: white;
     }
     #yes:hover {
-      background: #ff3366;
-      transform: scale(1.12) translateY(-4px);
-      box-shadow: 0 14px 40px rgba(255,77,109,0.5);
+      background: #e02e5c;
+      transform: scale(1.14) translateY(-5px);
+      box-shadow: 0 16px 45px rgba(255,51,102,0.55);
     }
     #no {
       background: #fff;
       color: #ff4d6d;
     }
     #no:hover {
-      background: #ffebee;
-      transform: translateY(-2px);
+      background: #ffe6e9;
+      transform: translateY(-3px);
     }
     .msg {
-      font-size: 2.4rem;
+      font-size: clamp(2rem, 5.5vw, 2.8rem);
       font-weight: 700;
       color: #fff;
-      text-shadow: 0 6px 20px rgba(0,0,0,0.4);
-      margin-top: 3rem;
+      text-shadow: 0 6px 22px rgba(0,0,0,0.45);
+      margin-top: 3.5rem;
       opacity: 0;
-      transform: translateY(30px);
-      transition: all 1.2s cubic-bezier(0.34,1.56,0.64,1);
+      transform: translateY(40px);
+      transition: all 1.3s cubic-bezier(0.34,1.56,0.64,1);
     }
     .msg.show {
       opacity: 1;
       transform: translateY(0);
     }
-    @media (max-height: 620px) {
-      h1 { font-size: 4.8rem; }
-      .subtitle { font-size: 1.8rem; margin: 0.6em 0 1.8em; }
-      .btn-group { gap: 1.5rem; }
-      button { font-size: 1.3rem; padding: 0.9rem 2.2rem; }
+    @media (max-height: 640px) {
+      h1 { font-size: 5.2rem; }
+      .subtitle { font-size: 1.9rem; margin: 0.8em 0 2em; }
+      button { font-size: 1.4rem; padding: 1rem 2.5rem; }
     }
   </style>
 </head>
@@ -122,15 +124,20 @@
 
 <div class="container">
   <h1>Jovi…</h1>
-  <div class="subtitle">will you be my Valentine? 💕</div>
+  <div class="subtitle">
+    One year ago you became my everything.<br>
+    Last month you said yes to forever and made me the luckiest man alive.<br><br>
+    This Valentine’s Day I just want to ask one more time —<br>
+    <strong>will you be my Valentine… again and always?</strong> 💍💗
+  </div>
 
   <div class="btn-group">
-    <button id="yes">Yes!! 🥰</button>
+    <button id="yes">Yes — forever & always! 🥰💕</button>
     <button id="no">No 😭</button>
   </div>
 
-  <div class="msg" id="happy-msg">Yayyyy!!! I love you so much Jovi 💗💗💗</div>
-  <div class="msg" id="sad-msg" style="color: #ffebee;">…please reconsider? 🥺</div>
+  <div class="msg" id="happy-msg">My heart is exploding 💖<br>I love you more every single day, fiancée</div>
+  <div class="msg" id="sad-msg" style="color: #ffebee;">…please? I already can’t wait to marry you 🥺</div>
 </div>
 
 <script>
@@ -138,16 +145,16 @@
   function createHeart() {
     const heart = document.createElement("div");
     heart.className = "heart";
-    heart.innerHTML = ["❤️","💗","💖","💘","💞"][Math.floor(Math.random()*5)];
+    heart.innerHTML = ["❤️","💗","💖","💘","💞","💍"][Math.floor(Math.random()*6)];
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (8 + Math.random() * 10) + "s";
-    heart.style.fontSize = (1.1 + Math.random() * 1.8) + "rem";
-    heart.style.animationDelay = Math.random() * 3 + "s";
+    heart.style.animationDuration = (9 + Math.random() * 11) + "s";
+    heart.style.fontSize = (1.2 + Math.random() * 2) + "rem";
+    heart.style.animationDelay = Math.random() * 4 + "s";
     document.getElementById("hearts").appendChild(heart);
-    setTimeout(() => heart.remove(), 15000);
+    setTimeout(() => heart.remove(), 18000);
   }
 
-  setInterval(createHeart, 380);
+  setInterval(createHeart, 420);
 
   // Button logic
   const yesBtn   = document.getElementById("yes");
@@ -159,24 +166,26 @@
     happyMsg.classList.add("show");
     sadMsg.classList.remove("show");
     noBtn.style.display = "none";
-    yesBtn.style.transform = "scale(1.3)";
+    yesBtn.style.transform = "scale(1.35)";
     yesBtn.disabled = true;
-    // Optional: redirect or play song after a few seconds
-    // setTimeout(() => { window.location = "https://youtu.be/dQw4w9WgXcQ"; }, 4200);
+    // Optional: play your song / photo montage later
+    setTimeout(() => { window.location = "https://open.spotify.com/track/5XeFesFbtLpXzIVDNQP22n"; }, 5000);
   });
 
   let noClicks = 0;
   noBtn.addEventListener("click", () => {
     noClicks++;
-    if (noClicks <= 3) {
-      sadMsg.textContent = ["🥺 please?","but I made this just for you…","Jovi noooo 😭","one more chance? 🥹"][noClicks-1];
-    } else {
-      sadMsg.textContent = "okay… I'll wait forever if I have to 💔";
-    }
+    const messages = [
+      "🥺 but you already said yes to forever…",
+      "one more yes? For Valentine’s too? 🥹",
+      "I’m already planning our honeymoon… don’t do this 😭",
+      "okay… but I’ll love you every February 14th anyway 💔"
+    ];
+    sadMsg.textContent = messages[Math.min(noClicks-1, messages.length-1)];
     sadMsg.classList.add("show");
     
-    // tiny playful movement
-    noBtn.style.transform = `translate(${Math.random()*60-30}px, ${Math.random()*40-20}px)`;
+    // playful tiny shake
+    noBtn.style.transform = `translate(${Math.random()*80-40}px, ${Math.random()*50-25}px)`;
   });
 </script>
 
