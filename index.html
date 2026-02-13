@@ -6,116 +6,137 @@
   <title>To My Jovi 💍💕</title>
   <style>
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      height: 100vh;
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: linear-gradient(135deg, #ff9aa2 0%, #ffb7b2 50%, #ffdac1 100%);
-      color: #2d1b24;
-      overflow: hidden;
-      cursor: default;
-    }
-    .container {
-      position: relative;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      text-align: center;
-    }
-    h1 {
-      font-size: clamp(3.5rem, 10vw, 7rem);
-      font-weight: 800;
-      color: #fff;
-      text-shadow: 0 8px 25px rgba(0,0,0,0.3);
-      margin-bottom: 0.15em;
-      letter-spacing: -1.5px;
-      line-height: 0.9;
-    }
-    .subtitle {
-      font-size: clamp(1.4rem, 4.5vw, 2.3rem);
-      color: #fffef9;
-      max-width: 90%;
-      line-height: 1.45;
-      margin: 0.7em 0 2.8rem;
-      font-weight: 400;
-      opacity: 0.98;
-    }
-    .hearts {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    .heart {
-      position: absolute;
-      font-size: 1.9rem;
-      animation: float 13s infinite linear;
-      opacity: 0.75;
-      user-select: none;
-    }
-    @keyframes float {
-      0%   { transform: translateY(110vh) rotate(0deg); }
-      100% { transform: translateY(-20vh) rotate(900deg); }
-    }
-    .btn-group {
-      display: flex;
-      gap: 2.8rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 2rem;
-    }
-    button {
-      font-size: 1.6rem;
-      font-weight: bold;
-      padding: 1.2rem 3rem;
-      border: none;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.22);
-    }
-    #yes {
-      background: #ff3366;
-      color: white;
-    }
-    #yes:hover {
-      background: #e02e5c;
-      transform: scale(1.14) translateY(-5px);
-      box-shadow: 0 16px 45px rgba(255,51,102,0.55);
-    }
-    #no {
-      background: #fff;
-      color: #ff4d6d;
-    }
-    #no:hover {
-      background: #ffe6e9;
-      transform: translateY(-3px);
-    }
-    .msg {
-      font-size: clamp(2rem, 5.5vw, 2.8rem);
-      font-weight: 700;
-      color: #fff;
-      text-shadow: 0 6px 22px rgba(0,0,0,0.45);
-      margin-top: 3.5rem;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 1.3s cubic-bezier(0.34,1.56,0.64,1);
-    }
-    .msg.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    @media (max-height: 640px) {
-      h1 { font-size: 5.2rem; }
-      .subtitle { font-size: 1.9rem; margin: 0.8em 0 2em; }
-      button { font-size: 1.4rem; padding: 1rem 2.5rem; }
-    }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100svh; /* mobile safe viewport */
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: linear-gradient(135deg, #ff9aa2 0%, #ffb7b2 50%, #ffdac1 100%);
+  color: #2d1b24;
+  overflow-x: hidden;
+}
+
+.container {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 5vw, 40px);
+  text-align: center;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 10vw, 7rem);
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  margin-bottom: 0.2em;
+  line-height: 1;
+}
+
+.subtitle {
+  font-size: clamp(1.1rem, 4.5vw, 2.3rem);
+  max-width: 700px;
+  color: #fffef9;
+  line-height: 1.5;
+  margin: 1rem 0 2rem;
+}
+
+.hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.heart {
+  position: absolute;
+  font-size: 1.6rem;
+  animation: float 13s linear infinite;
+  opacity: 0.75;
+}
+
+@keyframes float {
+  0% { transform: translateY(110vh) rotate(0deg); }
+  100% { transform: translateY(-20vh) rotate(900deg); }
+}
+
+.btn-group {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+button {
+  flex: 1 1 200px;
+  font-size: clamp(1rem, 4vw, 1.6rem);
+  font-weight: bold;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.22);
+}
+
+/* tap feedback instead of hover */
+button:active {
+  transform: scale(0.95);
+}
+
+#yes {
+  background: #ff3366;
+  color: white;
+}
+
+#no {
+  background: #fff;
+  color: #ff4d6d;
+}
+
+.msg {
+  font-size: clamp(1.4rem, 5vw, 2.8rem);
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 6px 22px rgba(0,0,0,0.45);
+  margin-top: 2rem;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.msg.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* small screens */
+@media (max-width: 600px) {
+  .btn-group {
+    flex-direction: column;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+/* reduce animation load on tiny devices */
+@media (max-width: 480px) {
+  .heart {
+    animation-duration: 18s;
+    opacity: 0.6;
+  }
+}
+
   </style>
 </head>
 <body>
