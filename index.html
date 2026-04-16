@@ -14,24 +14,13 @@
     body {
       min-height: 100svh;
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: radial-gradient(circle at 50% 30%, #3a0a2e 0%, #0f001a 50%, #000000 100%);
+      /* Your single moon + wolf background image */
+      background: 
+        linear-gradient(rgba(10, 0, 20, 0.78), rgba(8, 0, 18, 0.85)), 
+        url('images/wolf_moon.png') center/cover no-repeat fixed;
       color: #ffe4f0;
       overflow-x: hidden;
       position: relative;
-    }
-
-    /* Subtle moon glow */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 10%;
-      right: 10%;
-      width: 180px;
-      height: 180px;
-      background: radial-gradient(circle, rgba(255,240,220,0.15) 0%, transparent 70%);
-      border-radius: 50%;
-      z-index: 0;
-      pointer-events: none;
     }
 
     .container {
@@ -50,7 +39,7 @@
       font-size: clamp(2.8rem, 9vw, 6.5rem);
       font-weight: 900;
       color: #fff;
-      text-shadow: 0 0 40px rgba(255, 180, 220, 0.6);
+      text-shadow: 0 0 45px rgba(255, 180, 220, 0.75);
       margin-bottom: 0.3em;
       line-height: 1.05;
     }
@@ -68,12 +57,12 @@
     }
 
     .photo {
-      max-width: 340px;
+      max-width: 360px;
       width: 100%;
       border-radius: 28px;
-      margin: 1.5rem 0;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-      border: 6px solid rgba(255, 255, 255, 0.1);
+      margin: 1.8rem 0 1.5rem;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.65);
+      border: 7px solid rgba(255, 255, 255, 0.15);
     }
 
     .btn-group {
@@ -90,12 +79,12 @@
       flex: 1 1 220px;
       font-size: clamp(1.1rem, 4.2vw, 1.7rem);
       font-weight: 700;
-      padding: 1.1rem 2rem;
+      padding: 1.15rem 2rem;
       border: none;
       border-radius: 9999px;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
     }
 
     #yes {
@@ -103,9 +92,9 @@
       color: white;
     }
 
-    #yes:hover, #yes:active {
+    #yes:hover {
       transform: scale(1.08) translateY(-4px);
-      box-shadow: 0 20px 50px rgba(255, 77, 148, 0.5);
+      box-shadow: 0 20px 55px rgba(255, 77, 148, 0.6);
     }
 
     #no {
@@ -122,7 +111,7 @@
       font-size: clamp(1.5rem, 5.5vw, 3rem);
       font-weight: 700;
       color: #fff;
-      text-shadow: 0 8px 30px rgba(0,0,0,0.6);
+      text-shadow: 0 8px 30px rgba(0,0,0,0.7);
       margin-top: 2rem;
       opacity: 0;
       transform: translateY(50px);
@@ -135,7 +124,14 @@
       transform: translateY(0);
     }
 
-    /* Floating hearts container */
+    #confetti-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+
     .hearts {
       position: fixed;
       inset: 0;
@@ -149,25 +145,18 @@
       font-size: 1.8rem;
       animation: floatUp linear infinite;
       opacity: 0.85;
-      text-shadow: 0 0 10px rgba(255, 100, 180, 0.8);
+      text-shadow: 0 0 12px rgba(255, 100, 180, 0.9);
     }
 
     @keyframes floatUp {
       0% { transform: translateY(110vh) rotate(0deg); }
       100% { transform: translateY(-30vh) rotate(720deg); }
     }
-
-    /* Small screen adjustments */
-    @media (max-width: 600px) {
-      .btn-group {
-        flex-direction: column;
-        gap: 1rem;
-      }
-    }
   </style>
 </head>
 <body>
 
+  <canvas id="confetti-canvas"></canvas>
   <div class="hearts" id="hearts"></div>
 
   <div class="container">
@@ -180,9 +169,9 @@
       <strong>will you be my Valentine… again and always?</strong> 💍💗
     </div>
 
-    <!-- Replace this src with your own couple photo URL (imgur, google drive direct link, etc.) -->
-    <img src="https://imgur.com/a/MuOBNS1.jpg" 
-         alt="Us" class="photo">
+    <!-- Replace with your couple photo filename if uploaded -->
+    <img src="images/couple.jpg" 
+         alt="Us 💕" class="photo">
 
     <div class="btn-group">
       <button id="yes">Yes — forever & always! 🥰💕</button>
@@ -194,27 +183,85 @@
   </div>
 
   <script>
-    // Floating hearts
+    // Confetti Animation
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height - canvas.height;
+        this.size = Math.random() * 12 + 7;
+        this.speedY = Math.random() * 8 + 6;
+        this.speedX = Math.random() * 6 - 3;
+        this.angle = Math.random() * 360;
+        this.angleSpeed = Math.random() * 0.08 - 0.04;
+        this.color = ['#ff4d94', '#ff99cc', '#ffe4f0', '#c084fc', '#f472b6', '#ffffff', '#fcd34d'][Math.floor(Math.random() * 7)];
+        this.shape = Math.random() > 0.5 ? 'circle' : 'rect';
+      }
+      update() {
+        this.y += this.speedY;
+        this.x += this.speedX;
+        this.angle += this.angleSpeed;
+        this.speedY += 0.08;
+      }
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle);
+        ctx.fillStyle = this.color;
+        if (this.shape === 'circle') {
+          ctx.beginPath();
+          ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size * 0.6);
+        }
+        ctx.restore();
+      }
+    }
+
+    function launchConfetti() {
+      for (let i = 0; i < 280; i++) particles.push(new Particle());
+    }
+
+    function animateConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.update();
+        p.draw();
+        if (p.y > canvas.height + 50) particles.splice(i, 1);
+      }
+      if (particles.length > 0) requestAnimationFrame(animateConfetti);
+    }
+
+    // Floating Hearts
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
-      heart.innerHTML = ["❤️", "💗", "💖", "💘", "💞", "🌙"][Math.floor(Math.random() * 6)];
+      heart.innerHTML = ["❤️","💗","💖","💘","💞","🌙"][Math.floor(Math.random()*6)];
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.animationDuration = (12 + Math.random() * 14) + "s";
       heart.style.fontSize = (1.4 + Math.random() * 1.8) + "rem";
       heart.style.animationDelay = "-" + Math.random() * 10 + "s";
       document.getElementById("hearts").appendChild(heart);
-
       setTimeout(() => heart.remove(), 28000);
     }
-
     setInterval(createHeart, 380);
 
-    // Typewriter effect
+    // Typewriter
     const typewriterText = "To My Jovi… 💍";
     let i = 0;
     const typewriterEl = document.getElementById("typewriter");
-
     function typeWriter() {
       if (i < typewriterText.length) {
         typewriterEl.textContent += typewriterText.charAt(i);
@@ -224,7 +271,7 @@
     }
     typeWriter();
 
-    // Button interactions
+    // Buttons
     const yesBtn = document.getElementById("yes");
     const noBtn = document.getElementById("no");
     const happyMsg = document.getElementById("happy-msg");
@@ -237,8 +284,10 @@
       yesBtn.style.transform = "scale(1.25)";
       yesBtn.disabled = true;
 
-      // Optional: redirect to a romantic song after a few seconds
-      // Replace the URL with any song you both love
+      launchConfetti();
+      animateConfetti();
+      setTimeout(launchConfetti, 800);
+
       setTimeout(() => {
         window.open("https://open.spotify.com/track/5XeFesFbtLpXzIVDNQP22n", "_blank");
       }, 4200);
@@ -256,8 +305,6 @@
       noClickCount++;
       sadMsg.textContent = sadMessages[Math.min(noClickCount - 1, sadMessages.length - 1)];
       sadMsg.classList.add("show");
-      
-      // Playful shake
       noBtn.style.transition = "transform 0.1s";
       noBtn.style.transform = `translate(${Math.random() * 60 - 30}px, ${Math.random() * 30 - 15}px)`;
       setTimeout(() => noBtn.style.transform = "translate(0,0)", 150);
