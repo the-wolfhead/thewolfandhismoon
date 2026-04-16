@@ -1,4 +1,4 @@
-he<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -6,241 +6,262 @@ he<!DOCTYPE html>
   <title>To My Jovi 💍💕</title>
   <style>
     * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  min-height: 100svh;
-  font-family: 'Segoe UI', system-ui, sans-serif;
-  background: radial-gradient(circle at top, #1a0010 0%, #000000 70%);
-  color: #fbeaf2;
-  overflow-x: hidden;
-}
+    body {
+      min-height: 100svh;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 50% 30%, #3a0a2e 0%, #0f001a 50%, #000000 100%);
+      color: #ffe4f0;
+      overflow-x: hidden;
+      position: relative;
+    }
 
+    /* Subtle moon glow */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 10%;
+      right: 10%;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(255,240,220,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: 0;
+      pointer-events: none;
+    }
 
-.container {
-  position: relative;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(16px, 5vw, 40px);
-  text-align: center;
-}
+    .container {
+      position: relative;
+      z-index: 2;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(20px, 6vw, 50px);
+      text-align: center;
+    }
 
-h1 {
-  font-size: clamp(2.4rem, 10vw, 7rem);
-  font-weight: 800;
-  color: #fff;
-  text-shadow: 0 8px 25px rgba(0,0,0,0.3);
-  margin-bottom: 0.2em;
-  line-height: 1;
-}
+    h1 {
+      font-size: clamp(2.8rem, 9vw, 6.5rem);
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 0 40px rgba(255, 180, 220, 0.6);
+      margin-bottom: 0.3em;
+      line-height: 1.05;
+    }
 
-    #typewriter::after {
-  content: "|";
-  margin-left: 6px;
-  animation: blink 1s infinite;
-}
+    .subtitle {
+      font-size: clamp(1.15rem, 4.5vw, 2rem);
+      max-width: 720px;
+      line-height: 1.65;
+      color: #f8d7e8;
+      margin: 1.2rem 0 2.5rem;
+    }
 
-@keyframes blink {
-  50% { opacity: 0; }
-}
+    .subtitle strong {
+      color: #ff99cc;
+    }
 
+    .photo {
+      max-width: 340px;
+      width: 100%;
+      border-radius: 28px;
+      margin: 1.5rem 0;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      border: 6px solid rgba(255, 255, 255, 0.1);
+    }
 
-.subtitle {
-  font-size: clamp(1.1rem, 4.5vw, 2.3rem);
-  max-width: 700px;
-  color: #fffef9;
-  line-height: 1.5;
-  margin: 1rem 0 2rem;
-}
+    .btn-group {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 520px;
+      width: 100%;
+      margin: 1.5rem 0;
+    }
 
-.hearts {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
+    button {
+      flex: 1 1 220px;
+      font-size: clamp(1.1rem, 4.2vw, 1.7rem);
+      font-weight: 700;
+      padding: 1.1rem 2rem;
+      border: none;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
 
-.heart {
-  position: absolute;
-  font-size: 1.6rem;
-  animation: float 13s linear infinite;
-  opacity: 0.75;
-}
+    #yes {
+      background: linear-gradient(135deg, #ff4d94, #ff3388);
+      color: white;
+    }
 
-@keyframes float {
-  0% { transform: translateY(110vh) rotate(0deg); }
-  100% { transform: translateY(-20vh) rotate(900deg); }
-}
+    #yes:hover, #yes:active {
+      transform: scale(1.08) translateY(-4px);
+      box-shadow: 0 20px 50px rgba(255, 77, 148, 0.5);
+    }
 
-.btn-group {
-  display: flex;
-  gap: 1.2rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-  max-width: 500px;
-}
+    #no {
+      background: #ffffff;
+      color: #c41e3a;
+    }
 
-button {
-  flex: 1 1 200px;
-  font-size: clamp(1rem, 4vw, 1.6rem);
-  font-weight: bold;
-  padding: 1rem 1.5rem;
-  border: none;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
-  box-shadow: 0 10px 35px rgba(0,0,0,0.22);
-}
+    #no:hover {
+      background: #ffe0e6;
+      transform: translateX(8px);
+    }
 
-/* tap feedback instead of hover */
-button:active {
-  transform: scale(0.95);
-}
+    .msg {
+      font-size: clamp(1.5rem, 5.5vw, 3rem);
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 8px 30px rgba(0,0,0,0.6);
+      margin-top: 2rem;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      line-height: 1.4;
+    }
 
-#yes {
-  background: #ff3366;
-  color: white;
-}
+    .msg.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-#no {
-  background: #fff;
-  color: #ff4d6d;
-}
+    /* Floating hearts container */
+    .hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
 
-.msg {
-  font-size: clamp(1.4rem, 5vw, 2.8rem);
-  font-weight: 700;
-  color: #fff;
-  text-shadow: 0 6px 22px rgba(0,0,0,0.45);
-  margin-top: 2rem;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 1s cubic-bezier(0.34,1.56,0.64,1);
-}
+    .heart {
+      position: absolute;
+      font-size: 1.8rem;
+      animation: floatUp linear infinite;
+      opacity: 0.85;
+      text-shadow: 0 0 10px rgba(255, 100, 180, 0.8);
+    }
 
-.msg.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+    @keyframes floatUp {
+      0% { transform: translateY(110vh) rotate(0deg); }
+      100% { transform: translateY(-30vh) rotate(720deg); }
+    }
 
-/* small screens */
-@media (max-width: 600px) {
-  .btn-group {
-    flex-direction: column;
-  }
-
-  button {
-    width: 100%;
-  }
-}
-
-/* reduce animation load on tiny devices */
-@media (max-width: 480px) {
-  .heart {
-    animation-duration: 18s;
-    opacity: 0.6;
-  }
-}
-
+    /* Small screen adjustments */
+    @media (max-width: 600px) {
+      .btn-group {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
 
-<div class="hearts" id="hearts"></div>
+  <div class="hearts" id="hearts"></div>
 
-<div class="container">
-  <h1 id="typewriter"></h1>
+  <div class="container">
+    <h1 id="typewriter"></h1>
 
-  <div class="subtitle">
-    One year ago you became my everything.<br>
-    Last month you said yes to forever and made me the luckiest man alive.<br><br>
-    This Valentine’s Day I just want to ask one more time —<br>
-    <strong>will you be my Valentine… again and always?</strong> 💍💗
+    <div class="subtitle">
+      One year ago you became my everything.<br>
+      Last month you said yes to forever and made me the luckiest man alive.<br><br>
+      This Valentine’s Day I just want to ask one more time —<br>
+      <strong>will you be my Valentine… again and always?</strong> 💍💗
+    </div>
+
+    <!-- Replace this src with your own couple photo URL (imgur, google drive direct link, etc.) -->
+    <img src="https://via.placeholder.com/600x400/2a0a20/ffe4f0?text=Our+Photo+Here" 
+         alt="Us" class="photo">
+
+    <div class="btn-group">
+      <button id="yes">Yes — forever & always! 🥰💕</button>
+      <button id="no">No 😭</button>
+    </div>
+
+    <div class="msg" id="happy-msg">My heart is exploding 💖<br>I love you more every single day, fiancée…</div>
+    <div class="msg" id="sad-msg" style="color: #ffe0e6;">…please? I already can’t wait to marry you 🥺</div>
   </div>
-<img src="<img src="https://drive.google.com/file/d/1UVF1vta5I3UxroyKJ14XmgRp7utGMTnw/view?usp=share_link" alt="Us" style="max-width:320px; border-radius:24px; margin:2rem 0 1rem; box-shadow:0 14px 50px rgba(0,0,0,0.3);">
-  <div class="btn-group">
-    <button id="yes">Yes — forever & always! 🥰💕</button>
-    <button id="no">No 😭</button>
-  </div>
 
-  <div class="msg" id="happy-msg">My heart is exploding 💖<br>I love you more every single day, fiancée</div>
-  <div class="msg" id="sad-msg" style="color: #ffebee;">…please? I already can’t wait to marry you 🥺</div>
-</div>
+  <script>
+    // Floating hearts
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = ["❤️", "💗", "💖", "💘", "💞", "🌙"][Math.floor(Math.random() * 6)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (12 + Math.random() * 14) + "s";
+      heart.style.fontSize = (1.4 + Math.random() * 1.8) + "rem";
+      heart.style.animationDelay = "-" + Math.random() * 10 + "s";
+      document.getElementById("hearts").appendChild(heart);
 
-<script>
-  // Floating hearts
-  function createHeart() {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = ["❤️","💗","💖","💘","💞","💍"][Math.floor(Math.random()*6)];
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (9 + Math.random() * 11) + "s";
-    heart.style.fontSize = (1.2 + Math.random() * 2) + "rem";
-    heart.style.animationDelay = Math.random() * 4 + "s";
-    document.getElementById("hearts").appendChild(heart);
-    setTimeout(() => heart.remove(), 18000);
-  }
+      setTimeout(() => heart.remove(), 28000);
+    }
 
-  setInterval(createHeart, 420);
+    setInterval(createHeart, 380);
 
-  // Button logic
-  const yesBtn   = document.getElementById("yes");
-  const noBtn    = document.getElementById("no");
-  const happyMsg = document.getElementById("happy-msg");
-  const sadMsg   = document.getElementById("sad-msg");
+    // Typewriter effect
+    const typewriterText = "To My Jovi… 💍";
+    let i = 0;
+    const typewriterEl = document.getElementById("typewriter");
 
-  yesBtn.addEventListener("click", () => {
-    happyMsg.classList.add("show");
-    sadMsg.classList.remove("show");
-    noBtn.style.display = "none";
-    yesBtn.style.transform = "scale(1.35)";
-    yesBtn.disabled = true;
-    // Optional: play your song / photo montage later
-    setTimeout(() => { window.location = "https://open.spotify.com/track/5XeFesFbtLpXzIVDNQP22n"; }, 5000);
-  });
+    function typeWriter() {
+      if (i < typewriterText.length) {
+        typewriterEl.textContent += typewriterText.charAt(i);
+        i++;
+        setTimeout(typeWriter, 80);
+      }
+    }
+    typeWriter();
 
-  let noClicks = 0;
-  noBtn.addEventListener("click", () => {
-    noClicks++;
-    const messages = [
-      "🥺 but you already said yes to forever…",
-      "one more yes? For Valentine’s too? 🥹",
+    // Button interactions
+    const yesBtn = document.getElementById("yes");
+    const noBtn = document.getElementById("no");
+    const happyMsg = document.getElementById("happy-msg");
+    const sadMsg = document.getElementById("sad-msg");
+
+    yesBtn.addEventListener("click", () => {
+      happyMsg.classList.add("show");
+      sadMsg.classList.remove("show");
+      noBtn.style.display = "none";
+      yesBtn.style.transform = "scale(1.25)";
+      yesBtn.disabled = true;
+
+      // Optional: redirect to a romantic song after a few seconds
+      // Replace the URL with any song you both love
+      setTimeout(() => {
+        window.open("https://open.spotify.com/track/5XeFesFbtLpXzIVDNQP22n", "_blank");
+      }, 4200);
+    });
+
+    let noClickCount = 0;
+    const sadMessages = [
+      "🥺 But you already said yes to forever…",
+      "One more yes? For Valentine’s too? 🥹",
       "I’m already planning our honeymoon… don’t do this 😭",
-      "okay… but I’ll love you every February 14th anyway 💔"
+      "Okay… but I’ll love you every February 14th anyway 💔"
     ];
-    sadMsg.textContent = messages[Math.min(noClicks-1, messages.length-1)];
-    sadMsg.classList.add("show");
-    
-    // playful tiny shake
-    noBtn.style.transform = `translate(${Math.random()*80-40}px, ${Math.random()*50-25}px)`;
-  });
 
-  // Typewriter animation
-const text = "Moon of my soul…";
-const speed = 70;
-
-let i = 0;
-function typeWriter() {
-  if (i < text.length) {
-    document.getElementById("typewriter").textContent += text.charAt(i);
-    i++;
-    setTimeout(typeWriter, speed);
-  }
-}
-
-typeWriter();
- 
-
-
-
-</script>
-
+    noBtn.addEventListener("click", () => {
+      noClickCount++;
+      sadMsg.textContent = sadMessages[Math.min(noClickCount - 1, sadMessages.length - 1)];
+      sadMsg.classList.add("show");
+      
+      // Playful shake
+      noBtn.style.transition = "transform 0.1s";
+      noBtn.style.transform = `translate(${Math.random() * 60 - 30}px, ${Math.random() * 30 - 15}px)`;
+      setTimeout(() => noBtn.style.transform = "translate(0,0)", 150);
+    });
+  </script>
 </body>
 </html>
